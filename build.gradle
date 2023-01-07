@@ -1,8 +1,24 @@
+buildscript {
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
+
+	dependencies {
+		classpath 'com.github.kiview:captain-hook:76a1c11a16'
+	}
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.1'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'com.diffplug.spotless' version '6.12.0'
+}
+
+apply plugin: 'com.github.tjni.captainhook'
+
+captainHook {
+	preCommit = './gradlew staging spotlessApply'
 }
 
 group = 'com.example'
