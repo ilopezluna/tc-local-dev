@@ -1,9 +1,12 @@
 # tc-local-dev
-Example project for local development with [Testcontainers](https://www.testcontainers.org/) as explained in [this blog post](https://bsideup.github.io/posts/local_development_with_testcontainers/).
+Spring Boot application connected to a Postgres database. Configured for local development with [Testcontainers](https://www.testcontainers.org/) as explained in [this blog post](https://bsideup.github.io/posts/local_development_with_testcontainers/).
+
+- No need to install Postgres
+- No need to install Docker
 
 ## Requirements
-* Docker (or TCC)
-* Java 17+
+- [Testcontainers Cloud](https://www.testcontainers.cloud/) or Docker
+- Java 17+
 
 ## Running the project
 - Import project into your IDE
