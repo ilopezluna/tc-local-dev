@@ -43,7 +43,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.flywaydb:flyway-core'
 	compileOnly 'org.projectlombok:lombok'
-	testImplementation 'io.projectreactor.tools:blockhound:1.0.6.RELEASE'
+	testImplementation 'io.projectreactor.tools:blockhound:1.0.7.RELEASE'
 	runtimeOnly 'org.postgresql:postgresql'
 	runtimeOnly 'org.postgresql:r2dbc-postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
