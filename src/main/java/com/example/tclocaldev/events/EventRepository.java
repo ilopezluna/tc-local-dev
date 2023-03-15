@@ -1,10 +1,10 @@
-package com.example.tclocaldev;
+package com.example.tclocaldev.events;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface NoteRepository extends ReactiveCrudRepository<Note, Long> {
-    Mono<Note> findByText(String text);
+public interface EventRepository extends ReactiveCrudRepository<Event, Long> {
+    Mono<Event> findByNoteId(Long noteId);
 }

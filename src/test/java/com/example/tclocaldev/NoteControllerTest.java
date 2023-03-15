@@ -1,10 +1,20 @@
 package com.example.tclocaldev;
 
+import com.example.tclocaldev.events.EventRepository;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import reactor.test.StepVerifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class NoteControllerTest extends AbstractIntegrationTest {
+
+    @Autowired
+    EventRepository eventRepository;
+
+    @Autowired
+    NoteRepository noteRepository;
 
     @Test
     void findAll() {
@@ -21,7 +31,7 @@ class NoteControllerTest extends AbstractIntegrationTest {
     @Test
     void save() {
         var note = new Note();
-        var text = "test note";
+        var text = RandomStringUtils.randomAlphabetic(10);
         note.setText(text);
         webTestClient
             .post()
@@ -32,5 +42,12 @@ class NoteControllerTest extends AbstractIntegrationTest {
             .isOk()
             .expectBody(Note.class)
             .value(stored -> assertThat(stored).isNotNull().extracting(Note::getText).isEqualTo(text));
+
+        StepVerifier
+            .create(
+                noteRepository.findByText(text).flatMap(noteFromDB -> eventRepository.findByNoteId(noteFromDB.getId()))
+            )
+            .expectNextCount(1)
+            .verifyComplete();
     }
 }
